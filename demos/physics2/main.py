@@ -106,10 +106,12 @@ class MyScene(Scene):
         self.objects.append(obj)
 
     def delete_object(self):
-        all_balls = self.find_nodes(filter_class=FlyingBall)
-        if all_balls:
-            obj = random.choice(all_balls)
-            obj.delete()
+        for node in self.space.children:
+            node.delete()
+        # all_balls = self.find_nodes(filter_class=FlyingBall)
+        # if all_balls:
+        #     obj = random.choice(all_balls)
+        #     obj.delete()
 
     def update(self, dt):
         for event in self.input.events():

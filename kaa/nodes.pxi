@@ -62,9 +62,24 @@ cdef class NodeBase:
         self.c_node.add_child(node.c_node)
         return node
 
+    @property
+    def children(self):
+        cdef CNode* c_node
+        cdef NodeBase py_node
+        for c_node in self._get_c_node().children:
+            py_node = get_node_wrapper(c_node)
+            assert py_node.c_node != NULL
+            yield py_node
+            if py_node.c_node == NULL:
+                raise RuntimeError(
+                    "Deleting children nodes during iteration is forbidden "
+                    "(use list(node.children))"
+                )
+
     def delete(self):
         assert self.c_node != NULL
         del self.c_node
+        self.c_node = NULL
 
     def setup(self, **options):
        #assert not (

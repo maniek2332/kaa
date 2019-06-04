@@ -9,7 +9,7 @@ cdef extern from "kaacore/scenes.h" nogil:
         uint32_t time
 
         void process_frame(uint32_t dt)
-        void on_enter()
-        void update(uint32_t dt)
-        void on_exit()
+        void on_enter() except *
+        void update(uint32_t dt) except *
+        void on_exit() except *
         void process_nodes(uint32_t dt)
