@@ -45,8 +45,11 @@ class DemoScene(Scene):
                     self.sound.play(0.5)
                 else:
                     print("No sound loaded!")
+            elif event.is_pressing(Keycode.p):
+                print("Mouse position: {}".format(self.input.get_mouse_position()))
+            elif event.is_music_finished():
+                print("Music finished!")
 
-        print("Mouse position: {}".format(self.input.get_mouse_position()))
 
 
 if __name__ == '__main__':

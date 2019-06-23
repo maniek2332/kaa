@@ -317,6 +317,9 @@ cdef class Event:
     def get_mouse_position(self):
         return Vector.from_c_vector(self.c_event.get_mouse_position())
 
+    def is_music_finished(self):
+        return self.c_event.is_music_finished()
+
 
 cdef class InputManager:
     cdef CInputManager* c_input_manager
