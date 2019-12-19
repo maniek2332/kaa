@@ -32,5 +32,5 @@ steps:
   displayName: 'Build'
 
 - script: |
-    python -c 'import kaa._kaa'
+    python -c "import kaa._kaa"
   displayName: 'Test import'
