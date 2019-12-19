@@ -36,5 +36,11 @@ steps:
 - script: ls dist/
   displayName: 'List wheels'
 
+- bash: |
+    RESULT=`ls dist/`
+    echo "$RESULT"
+    echo "##vso[task.setvariable variable=dist_name]$RESULT"
+  displayName: 'Capturing output name'
+
 - publish: dist/
-  artifact: "kaaengine_win_py37"
+  artifact: $(dist_name)
