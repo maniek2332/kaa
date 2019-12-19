@@ -24,11 +24,11 @@ steps:
 
 - script: |
     python -m pip install --upgrade pip
-    pip install ninja==1.9.0.post1 Cython==0.29.14 scikit-build==0.10.0
+    pip install Cython==0.29.14 scikit-build==0.10.0
   displayName: 'Install dependencies'
 
 - script: |
-    python setup.py install
+    python setup.py install -G "Visual Studio 15 2017 Win64"
   displayName: 'Build'
 
 - script: |
