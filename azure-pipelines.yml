@@ -15,8 +15,10 @@ strategy:
 
 steps:
 - checkout: self
+
 - script: git submodule update --init --recursive
   displayName: 'Fetch submodules'
+
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '$(python.version)'
@@ -32,4 +34,7 @@ steps:
   displayName: 'Build'
 
 - script: ls dist/
-  displayName: 'Test import'
+  displayName: 'List wheels'
+
+- publish: $(System.DefaultWorkingDirectory)/dist/*.whl
+  artifact: "kaaengine_win_py37'
