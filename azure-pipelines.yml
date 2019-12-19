@@ -37,4 +37,4 @@ steps:
   displayName: 'List wheels'
 
 - publish: $(System.DefaultWorkingDirectory)/dist/*.whl
-  artifact: "kaaengine_win_py37'
+  artifact: "kaaengine_win_py37"
