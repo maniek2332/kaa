@@ -28,9 +28,8 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    python setup.py install -G "Visual Studio 15 2017 Win64"
+    python setup.py bdist_wheel -G "Visual Studio 15 2017 Win64"
   displayName: 'Build'
 
-- script: |
-    python -c "import kaa._kaa"
+- script: ls dist/
   displayName: 'Test import'
