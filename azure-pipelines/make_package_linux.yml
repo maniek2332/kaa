@@ -68,4 +68,5 @@ jobs:
     vmImage: 'ubuntu-16.04'
   steps:
   - download: current
+    patterns: '**/*.whl'
   - script: ls
