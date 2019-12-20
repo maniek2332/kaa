@@ -6,22 +6,6 @@
 trigger:
 - azure-pipelines
 
-pool:
-  vmImage: 'ubuntu-16.04'
-strategy:
-  matrix:
-    # Python36:
-    #   python.version: '3.6'
-    Python37:
-      python.version: '3.7'
-      python.version_tag: 'py37'
-    # Python38:
-    #   python.version: '3.8'
-
-variables:
-  docker_image: "quay.io/pypa/manylinux2010_x86_64"
-  docker_image_ref: "@sha256:d41631c7360a0028876755aebb7036db639c24e7dcdaf3a9e6dcc0e74a681541"
-
 jobs:
 - job: build
   displayName: 'Build phase'
@@ -37,6 +21,8 @@ jobs:
       Python38:
         python.version: '3.8'
         python.version_tag: 'py38'
+  variables:
+    docker_image: "quay.io/pypa/manylinux2010_x86_64"
   steps:
   - checkout: self
 
