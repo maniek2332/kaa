@@ -67,7 +67,5 @@ jobs:
   pool:
     vmImage: 'ubuntu-16.04'
   steps:
-  - script: mkdir dist/
   - download: current
-  - script: ls dist/
-  - script: tree
+  - script: ls
