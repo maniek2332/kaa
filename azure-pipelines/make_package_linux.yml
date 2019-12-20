@@ -69,4 +69,7 @@ jobs:
   steps:
   - download: current
     patterns: '**/*.whl'
-  - script: ls
+  - script: ls -A
+  - script: ls -A ..
+  - script: sudo apt-get install tree
+  - script: tree /
