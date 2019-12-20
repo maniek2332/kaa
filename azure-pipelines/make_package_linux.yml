@@ -72,4 +72,5 @@ jobs:
   - script: ls -A
   - script: ls -A ..
   - script: sudo apt-get install tree
-  - script: tree /
+  - script: tree $(Pipeline.Workspace)
+  - script: echo $(Pipeline.Workspace)/build_*/*.whl
