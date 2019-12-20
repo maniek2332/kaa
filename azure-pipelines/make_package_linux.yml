@@ -18,6 +18,10 @@ strategy:
     # Python38:
     #   python.version: '3.8'
 
+variables:
+  docker_image: "quay.io/pypa/manylinux2010_x86_64"
+  docker_image_ref: "@sha256:d41631c7360a0028876755aebb7036db639c24e7dcdaf3a9e6dcc0e74a681541"
+
 steps:
 - checkout: self
 
@@ -40,6 +44,11 @@ steps:
   inputs:
     dockerVersion: 17.09.0-ce
     releaseType: stable
+
+- script: |
+  docker pull $(docker_image)$(docker_image_ref)
+  docker run -v .:/host $(docker_image)$(docker_image_ref) \
+        /bin/bash /host/scripts/docker_wheel_builder.sh $(python.version_tag)
 
 - script: scripts/wheel_builder.sh $(python.version_tag)
   displayName: 'Wheel build manylinux2010'
