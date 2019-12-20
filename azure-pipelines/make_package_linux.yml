@@ -46,9 +46,9 @@ steps:
     releaseType: stable
 
 - script: |
-  docker pull $(docker_image)$(docker_image_ref)
-  docker run -v .:/host $(docker_image)$(docker_image_ref) \
-        /bin/bash /host/scripts/docker_wheel_builder.sh $(python.version_tag)
+    docker pull $(docker_image)$(docker_image_ref)
+    docker run -v .:/host $(docker_image)$(docker_image_ref) \
+      /bin/bash /host/scripts/docker_wheel_builder.sh $(python.version_tag)
 
 - script: scripts/wheel_builder.sh $(python.version_tag)
   displayName: 'Wheel build manylinux2010'
