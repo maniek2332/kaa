@@ -47,7 +47,7 @@ steps:
 
 - script: |
     sudo docker pull $(docker_image)
-    sudo docker run -v .:/host $(docker_image)$(docker_image_ref) \
+    sudo docker run -v .:/host $(docker_image) \
       /bin/bash /host/scripts/docker_wheel_builder.sh $(python.version_tag)
   displayName: 'Wheel build manylinux2010'
 
