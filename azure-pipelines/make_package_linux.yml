@@ -69,5 +69,5 @@ jobs:
   steps:
   - script: mkdir dist/
   - download: current
-    path: dist/
   - script: ls dist/
+  - script: tree
