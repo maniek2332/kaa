@@ -58,6 +58,6 @@ KAA_SETUP_CMAKE_SOURCE='/host/' python setup.py --force-cmake \
 LD_LIBRARY_PATH=/usr/local/lib/:$(echo /_skbuild/linux-*/cmake-build/kaacore/third_party/sdl2/)
 for WHEEL in /wheels/*.whl
 do
-    auditwheel repair -w /host/wheelhouse/ --lib-sdir ./ \
+    auditwheel repair -w /host/dist/ --lib-sdir ./ \
         --plat manylinux2010_x86_64 "${WHEEL}"
 done

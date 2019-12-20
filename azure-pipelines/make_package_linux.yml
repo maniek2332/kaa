@@ -1,0 +1,51 @@
+# Python package
+# Create and test a Python package on multiple Python versions.
+# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/python
+
+trigger:
+- azure-pipelines
+
+pool:
+  vmImage: 'ubuntu-16.04'
+strategy:
+  matrix:
+    # Python36:
+    #   python.version: '3.6'
+    Python37:
+      python.version: '3.7'
+      python.version_tag: 'py37'
+    # Python38:
+    #   python.version: '3.8'
+
+steps:
+- checkout: self
+
+- script: git submodule update --init --recursive
+  displayName: 'Fetch submodules'
+
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+  displayName: 'Use Python $(python.version)'
+
+- bash: |
+    VERSION=`python -c "import versioneer; print(versioneer.get_versions()['version'])"`
+    echo $VERSION
+    echo "##vso[task.setvariable variable=dist_version]$VERSION"
+  displayName: 'Getting version string'
+
+- task: DockerInstaller@0
+  displayName: Docker Installer
+  inputs:
+    dockerVersion: 17.09.0-ce
+    releaseType: stable
+
+- script: scripts/wheel_builder.sh $(python.version_tag)
+  displayName: 'Wheel build manylinux2010'
+
+- script: ls dist/
+  displayName: 'List wheels'
+
+- publish: dist/
+  artifact: "kaa_build_$(dist_version)"
