@@ -19,6 +19,8 @@ else
     TARGETS="py37"
 fi
 
+shift
+
 mkdir -p ./wheelhouse/
 
 touch _build_version.py
@@ -26,7 +28,7 @@ python -c 'import versioneer; versioneer.write_to_version_file("_build_version.p
 
 for PY_VERSION in ${TARGETS}
 do
-    sudo docker run -i -t -v `pwd`:/host "${DOCKER_IMAGE}${DOCKER_IMAGE_REF}" \
+    sudo docker run $@ -v `pwd`:/host "${DOCKER_IMAGE}${DOCKER_IMAGE_REF}" \
         /bin/bash /host/scripts/docker_wheel_builder.sh ${PY_VERSION}
 done
 
