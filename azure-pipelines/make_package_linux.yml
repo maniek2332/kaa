@@ -69,8 +69,12 @@ jobs:
   steps:
   - download: current
     patterns: '**/*.whl'
+    # downloads go to: $(Pipeline.Workspace)/{artifact_name}
   - script: ls -A
   - script: ls -A ..
   - script: sudo apt-get install tree
   - script: tree $(Pipeline.Workspace)
   - script: echo $(Pipeline.Workspace)/build_*/*.whl
+  - script: zip -jv kaa_gathered_builds_$(dist_version).zip $(Pipeline.Workspace)/build_*/*.whl
+  - publish: kaa_gathered_builds_$(dist_version).zip
+    artifact: "builds_gathered"
