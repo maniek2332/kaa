@@ -21,7 +21,8 @@ strategy:
 steps:
 - checkout: self
 
-- script: git submodule update --init --recursive
+- script: |
+    git clone https://github.com/maniek2332/kaacore --recurse-submodules
   displayName: 'Fetch submodules'
 
 - task: UsePythonVersion@0
