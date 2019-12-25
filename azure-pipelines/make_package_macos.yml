@@ -22,7 +22,7 @@ steps:
 - checkout: self
 
 - script: |
-    git clone https://github.com/maniek2332/kaacore --recurse-submodules
+    git clone https://github.com/maniek2332/kaacore --recurse-submodules -b macos-test
   displayName: 'Fetch submodules'
 
 - task: UsePythonVersion@0
