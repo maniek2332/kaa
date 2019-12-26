@@ -48,11 +48,20 @@ steps:
 
 - script: |
     export PATH=/Library/Frameworks/Python.framework/Versions/$(python.version)/bin:$PATH
-    /usr/local/bin/python setup.py bdist_wheel
+    /usr/local/bin/python setup.py bdist_wheel --plat-name macosx-10.9-x86_64
   displayName: 'Build'
 
 - script: ls dist/
   displayName: 'List wheels'
 
-- publish: dist/
+- script: |
+    export PATH=/Library/Frameworks/Python.framework/Versions/$(python.version)/bin:$PATH
+    delocate-listdeps dist/*.whl
+    delocate-listdeps --all dist/*.whl
+    mkdir fixed_dist/
+    delocate-wheel -w fixed_dist -v dist/*.whl
+    delocate-listdeps --all fixed_dist/*.whl
+  displayName: 'Delocate wheel'
+
+- publish: fixed_dist/
   artifact: "kaa_build_$(dist_version)"
