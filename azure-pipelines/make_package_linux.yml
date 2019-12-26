@@ -70,7 +70,7 @@ jobs:
   - download: current
     patterns: '**/*.whl'
     # downloads go to: $(Pipeline.Workspace)/{artifact_name}
-  - script: pip install twine
+  - script: python -m pip install twine
     displayName: 'Install twine'
   - script: |
       echo $(Pipeline.Workspace)/build_*/*.whl
