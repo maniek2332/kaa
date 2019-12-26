@@ -63,5 +63,11 @@ steps:
     delocate-listdeps --all fixed_dist/*.whl
   displayName: 'Delocate wheel'
 
+- script: |
+    export PATH=/Library/Frameworks/Python.framework/Versions/$(python.version)/bin:$PATH
+    /usr/local/bin/python -m venv venv_test_$(python.version)
+    ./venv_test_$(python.version)/bin/python -m pip install fixed_dist/*.whl
+    ./venv_test_$(python.version)/bin/python -c "import kaa._kaa"
+
 - publish: fixed_dist/
   artifact: "kaa_build_$(dist_version)"
