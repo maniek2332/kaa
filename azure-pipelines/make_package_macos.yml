@@ -41,12 +41,13 @@ steps:
   displayName: 'Getting version string'
 
 - script: |
-    python -m pip install --upgrade pip
-    pip install Cython==0.29.14 scikit-build==0.10.0 delocate
+    /usr/local/bin/python --version
+    /usr/local/bin/python -m pip install --upgrade pip
+    /usr/local/bin/python -m pip install Cython==0.29.14 scikit-build==0.10.0 delocate
   displayName: 'Install dependencies'
 
 - script: |
-    python setup.py bdist_wheel
+    /usr/local/bin/python setup.py bdist_wheel
   displayName: 'Build'
 
 - script: ls dist/

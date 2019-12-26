@@ -66,6 +66,8 @@ jobs:
   - build
   pool:
     vmImage: 'ubuntu-16.04'
+  variables:
+  - group: pypi-credentials-test
   steps:
   - download: current
     patterns: '**/*.whl'
@@ -84,11 +86,9 @@ jobs:
     displayName: 'Prepare gathered ZIP'
   - publish: kaa_gathered_builds.zip
     artifact: "builds_gathered"
-  - task: TwineAuthenticate@1
-    displayName: 'Twine Authenticate'
-    inputs:
-      pythonUploadServiceConnection: twine-test
   - script: |
       cat $(PYPIRC_PATH)
-      python -m twine upload -r "kaaengine" --config-file $(PYPIRC_PATH) $(Pipeline.Workspace)/build_*/*.whl
+      echo User: $TWINE_USERNAME
+      echo URL: $TWINE_REPOSITORY_URL
+      python -m twine upload $(Pipeline.Workspace)/build_*/*.whl
     displayName: 'Twine Upload'
