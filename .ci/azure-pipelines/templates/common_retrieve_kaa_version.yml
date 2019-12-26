@@ -8,6 +8,6 @@ steps:
     EOF
   displayName: 'Retrieve kaa version info'
 - bash: |
-    echo "Version: $[kaa_version.version]"
-    echo "Version dirty: $[kaa_version.dirty]"
+    echo "Version: $(kaa_version.version)"
+    echo "Version dirty: $(kaa_version.dirty)"
   displayName: 'Print kaa version info'
