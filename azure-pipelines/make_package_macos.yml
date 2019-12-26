@@ -25,14 +25,14 @@ steps:
     git clone https://github.com/maniek2332/kaacore --recurse-submodules -b macos-test
   displayName: 'Fetch submodules'
 
-# - task: UsePythonVersion@0
-#   inputs:
-#     versionSpec: '$(python.version)'
-#     architecture: 'x64'
-#   displayName: 'Use Python $(python.version)'
-
-- script: bash macos-install-python.sh $(python.version)
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+    architecture: 'x64'
   displayName: 'Use Python $(python.version)'
+
+# - script: bash macos-install-python.sh $(python.version)
+#   displayName: 'Use Python $(python.version)'
 
 - bash: |
     VERSION=`python -c "import versioneer; print(versioneer.get_versions()['version'])"`
@@ -41,14 +41,14 @@ steps:
   displayName: 'Getting version string'
 
 - script: |
-    /usr/local/bin/python --version
-    /usr/local/bin/python -m pip install --upgrade pip
-    /usr/local/bin/python -m pip install Cython==0.29.14 scikit-build==0.10.0 delocate
+    python --version
+    python -m pip install --upgrade pip
+    python -m pip install Cython==0.29.14 scikit-build==0.10.0 delocate
   displayName: 'Install dependencies'
 
 - script: |
     export PATH=/Library/Frameworks/Python.framework/Versions/$(python.version)/bin:$PATH
-    /usr/local/bin/python setup.py bdist_wheel --plat-name macosx-10.9-x86_64 -- -DKAA_BUNDLE_SDL:BOOL=OFF
+    python setup.py bdist_wheel --plat-name macosx-10.9-x86_64 -- -DKAA_BUNDLE_SDL:BOOL=OFF
   displayName: 'Build'
 
 - script: ls dist/
@@ -71,7 +71,7 @@ steps:
     export PATH=/Library/Frameworks/Python.framework/Versions/$(python.version)/bin:$PATH
     mkdir test_dir
     cd test_dir
-    /usr/local/bin/python -m venv venv_test_$(python.version)
+    python -m venv venv_test_$(python.version)
     ./venv_test_$(python.version)/bin/python -m pip install --upgrade pip
     ./venv_test_$(python.version)/bin/python -m pip install --upgrade ../fixed_dist/*.whl
     ./venv_test_$(python.version)/bin/python -c "import kaa._kaa"
