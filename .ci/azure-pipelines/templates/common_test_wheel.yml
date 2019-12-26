@@ -1,5 +1,5 @@
 steps:
-- script: |
+- bash: |
     ls wheelhouse/
     mkdir test_dir
     cd test_dir
