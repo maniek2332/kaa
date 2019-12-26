@@ -48,7 +48,7 @@ steps:
 
 - script: |
     export PATH=/Library/Frameworks/Python.framework/Versions/$(python.version)/bin:$PATH
-    /usr/local/bin/python setup.py bdist_wheel --plat-name macosx-10.9-x86_64
+  /usr/local/bin/python setup.py bdist_wheel --plat-name macosx-10.9-x86_64 -- -DKAA_BUNDLE_SDL:BOOL=OFF
   displayName: 'Build'
 
 - script: ls dist/
@@ -56,6 +56,10 @@ steps:
 
 - script: |
     export PATH=/Library/Frameworks/Python.framework/Versions/$(python.version)/bin:$PATH
+    SDL2_LIB_PATH=$(System.DefaultWorkingDirectory)/_skbuild/macosx-10.9-x86_64-$(python.version)/cmake-build/kaacore/third_party/sdl2/
+    echo $SDL2_LIB_PATH
+    ls $SDL2_LIB_PATH
+    export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SDL2_LIB_PATH
     delocate-listdeps dist/*.whl
     delocate-listdeps --all dist/*.whl
     mkdir fixed_dist/
