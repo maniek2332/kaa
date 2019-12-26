@@ -6,7 +6,8 @@ steps:
     print(f"##vso[task.setvariable variable=kaa_version.version]{version['version']}")
     print(f"##vso[task.setvariable variable=kaa_version.dirty]{version['dirty']}")
     EOF
-
-    echo "Version: $(kaa_version.version)"
-    echo "Version dirty: $(kaa_version.dirty)"
   displayName: 'Retrieve kaa version info'
+- bash: |
+    echo "Version: $[kaa_version.version]"
+    echo "Version dirty: $[kaa_version.dirty]"
+  displayName: 'Print kaa version info'
