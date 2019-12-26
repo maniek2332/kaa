@@ -132,6 +132,7 @@ jobs:
       python -m pip install --upgrade pip
       python -m pip install twine
     displayName: 'Install twine'
+  - template: templates/common_retrieve_kaa_version.yml
   - script: |
       echo $(Pipeline.Workspace)/build_*/*.whl
       zip -jv kaa_gathered_builds.zip $(Pipeline.Workspace)/build_*/*.whl
