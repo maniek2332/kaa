@@ -142,5 +142,7 @@ jobs:
   - script: |
       echo "User: $TWINE_USERNAME"
       echo "URL: $TWINE_REPOSITORY_URL"
-      python -m twine upload $(Pipeline.Workspace)/build_*/*.whl
+      python -m twine upload --verbose --disable-progress-bar $(Pipeline.Workspace)/build_*/*.whl
+    # populated from TWINE_* env variables
     displayName: 'Twine Upload'
+    condition: eq(variables['kaa_version.local'], 'False')
