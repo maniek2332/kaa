@@ -13,10 +13,10 @@ strategy:
   matrix:
     # Python36:
     #   python.version: '3.6'
-    # Python37:
-    #   python.version: '3.7'
-    Python38:
-      python.version: '3.8'
+    Python37:
+      python.version: '3.7'
+    # Python38:
+    #   python.version: '3.8'
 
 steps:
 - checkout: self
@@ -25,9 +25,13 @@ steps:
     git clone https://github.com/maniek2332/kaacore --recurse-submodules -b macos-test
   displayName: 'Fetch submodules'
 
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '$(python.version)'
+# - task: UsePythonVersion@0
+#   inputs:
+#     versionSpec: '$(python.version)'
+#     architecture: 'x64'
+#   displayName: 'Use Python $(python.version)'
+
+- script: bash macos-install-python.sh $(python.version)
   displayName: 'Use Python $(python.version)'
 
 - bash: |

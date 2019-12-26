@@ -90,5 +90,5 @@ jobs:
       pythonUploadServiceConnection: twine-test
   - script: |
       cat $(PYPIRC_PATH)
-      python -m twine upload -r "twine-test" --config-file $(PYPIRC_PATH) $(Pipeline.Workspace)/build_*/*.whl
+      python -m twine upload -r "kaaengine" --config-file $(PYPIRC_PATH) $(Pipeline.Workspace)/build_*/*.whl
     displayName: 'Twine Upload'
