@@ -89,7 +89,10 @@ jobs:
     platform.name: 'macos'
     platform.tag: 'macosx-10.9-x86_64'
   steps:
-  - template: templates/common_checkout_repository.yml
+  # - template: templates/common_checkout_repository.yml
+  - script: |
+      git clone https://github.com/maniek2332/kaacore --recurse-submodules -b macos-test
+    displayName: 'Fetch submodules'
   - template: templates/common_prepare_python.yml
   - script: |
       python setup.py bdist_wheel --plat-name $(platform.tag) -- -DKAA_BUNDLE_SDL:BOOL=OFF
