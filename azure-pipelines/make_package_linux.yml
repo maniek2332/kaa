@@ -79,10 +79,10 @@ jobs:
   - publish: kaa_gathered_builds.zip
     artifact: "builds_gathered"
   - task: TwineAuthenticate@1
-    displayName: 'Twine Authenticate'
-    inputs:
-      pythonUploadServiceConnection: twine-test
+    displayName: 'Twine Authenticate'
+    inputs:
+      pythonUploadServiceConnection: twine-test
   - script: |
       cat $(PYPIRC_PATH)
-      python -m twine upload -r "twine-test" --config-file $(PYPIRC_PATH) $(Pipeline.Workspace)/build_*/*.whl
-    displayName: 'Twine Upload'
+      python -m twine upload -r "twine-test" --config-file $(PYPIRC_PATH) $(Pipeline.Workspace)/build_*/*.whl
+    displayName: 'Twine Upload'
