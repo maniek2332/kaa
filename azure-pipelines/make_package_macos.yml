@@ -48,7 +48,7 @@ steps:
 
 - script: |
     export PATH=/Library/Frameworks/Python.framework/Versions/$(python.version)/bin:$PATH
-  /usr/local/bin/python setup.py bdist_wheel --plat-name macosx-10.9-x86_64 -- -DKAA_BUNDLE_SDL:BOOL=OFF
+    /usr/local/bin/python setup.py bdist_wheel --plat-name macosx-10.9-x86_64 -- -DKAA_BUNDLE_SDL:BOOL=OFF
   displayName: 'Build'
 
 - script: ls dist/
