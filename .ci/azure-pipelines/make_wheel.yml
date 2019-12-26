@@ -8,7 +8,7 @@ trigger:
 - azure-pipelines
 
 jobs:
-- job: build-linux
+- job: build_linux
   displayName: "Build Linux wheel"
   pool:
     vmImage: 'ubuntu-16.04'
@@ -44,7 +44,7 @@ jobs:
   - template: templates/common_store_wheel.yml
   - template: templates/common_test_wheel.yml
 
-- job: build-windows
+- job: build_windows
   displayName: "Build Windows wheel"
   pool:
     vmImage: 'vs2017-win2016'
@@ -73,8 +73,8 @@ jobs:
 - job: upload
   displayName: 'Upload wheel'
   dependsOn:
-  - build-linux
-  - build-windows
+  - build_linux
+  - build_windows
   pool:
     vmImage: 'ubuntu-16.04'
   variables:
