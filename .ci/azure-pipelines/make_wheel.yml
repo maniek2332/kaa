@@ -70,11 +70,48 @@ jobs:
   - template: templates/common_store_wheel.yml
   - template: templates/common_test_wheel.yml
 
+- job: build_macos
+  displayName: "Build macOS wheel"
+  pool:
+    vmImage: 'macOS-10.13'
+  strategy:
+    matrix:
+      Python36:
+        python.version: '3.6'
+        python.version_tag: 'py36'
+      Python37:
+        python.version: '3.7'
+        python.version_tag: 'py37'
+      Python38:
+        python.version: '3.8'
+        python.version_tag: 'py38'
+  variables:
+    platform.name: 'macos'
+    platform.tag: 'macosx-10.9-x86_64'
+  steps:
+  - template: templates/common_checkout_repository.yml
+  - template: templates/common_prepare_python.yml
+  - script: |
+      python setup.py bdist_wheel --plat-name $(platform.tag) -- -DKAA_BUNDLE_SDL:BOOL=OFF
+    displayName: 'Build wheel'
+  - bash: |
+      SDL2_LIB_PATH=$(System.DefaultWorkingDirectory)/_skbuild/$(platform.tag)-$(python.version)/cmake-build/kaacore/third_party/sdl2/
+      echo $SDL2_LIB_PATH
+      ls $SDL2_LIB_PATH
+      export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SDL2_LIB_PATH
+      delocate-listdeps dist/*.whl
+      delocate-wheel -w wheelhouse -v dist/*.whl
+      delocate-listdeps --all wheelhouse/*.whl
+    displayName: 'Delocate wheel'
+  - template: templates/common_store_wheel.yml
+  - template: templates/common_test_wheel.yml
+
 - job: upload
   displayName: 'Upload wheel'
   dependsOn:
   - build_linux
   - build_windows
+  - build_macos
   pool:
     vmImage: 'ubuntu-16.04'
   variables:
