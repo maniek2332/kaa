@@ -87,7 +87,6 @@ jobs:
   - publish: kaa_gathered_builds.zip
     artifact: "builds_gathered"
   - script: |
-      cat $(PYPIRC_PATH)
       echo User: $TWINE_USERNAME
       echo URL: $TWINE_REPOSITORY_URL
       python -m twine upload $(Pipeline.Workspace)/build_*/*.whl
