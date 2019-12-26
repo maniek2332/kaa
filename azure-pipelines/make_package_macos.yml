@@ -65,9 +65,11 @@ steps:
 
 - script: |
     export PATH=/Library/Frameworks/Python.framework/Versions/$(python.version)/bin:$PATH
+    mkdir test_dir
+    cd test_dir
     /usr/local/bin/python -m venv venv_test_$(python.version)
-    ./venv_test_$(python.version)/bin/python -m pip install fixed_dist/*.whl
-    ./venv_test_$(python.version)/bin/python -c "import kaa._kaa"
+    ./venv_test_$(python.version)/bin/python -m pip install --upgrade ../fixed_dist/*.whl
+    ../venv_test_$(python.version)/bin/python -c "import kaa._kaa"
 
 - publish: fixed_dist/
   artifact: "kaa_build_$(dist_version)"
