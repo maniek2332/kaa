@@ -19,7 +19,7 @@ else
     TARGETS="py37"
 fi
 
-mkdir -p ./dist/
+mkdir -p ./wheelhouse/
 
 touch _build_version.py
 python -c 'import versioneer; versioneer.write_to_version_file("_build_version.py", versioneer.get_versions())'
