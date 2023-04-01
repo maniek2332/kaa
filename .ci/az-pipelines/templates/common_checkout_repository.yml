@@ -1,4 +1,6 @@
 steps:
 - checkout: self
+  fetchTags: true
+  fetchDepth: 0
 - script: git submodule update --init --recursive
   displayName: 'Fetch submodules'

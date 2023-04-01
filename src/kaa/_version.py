@@ -44,7 +44,7 @@ def get_config():
     cfg.tag_prefix = "v"
     cfg.parentdir_prefix = "None"
     cfg.versionfile_source = "kaa/_version.py"
-    cfg.verbose = False
+    cfg.verbose = True
     return cfg
 
 
