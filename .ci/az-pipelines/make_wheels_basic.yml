@@ -11,14 +11,14 @@ jobs:
 - job: build_linux
   displayName: "Build Linux wheel"
   pool:
-    vmImage: 'ubuntu-18.04'
+    vmImage: 'ubuntu-20.04'
   strategy:
     matrix:
-      Python310:
-        python.version: '3.10'
-        python.version_tag: 'py310'
+      Python312:
+        python.version: '3.12'
+        python.version_tag: 'py312'
   variables:
-    docker_image: "quay.io/pypa/manylinux2010_x86_64"
+    docker_image: "quay.io/pypa/manylinux2014_x86_64"
     platform.name: 'linux'
   steps:
   - template: templates/common_checkout_repository.yml
@@ -34,7 +34,7 @@ jobs:
       sudo docker pull $(docker_image)
       sudo docker run -v $(System.DefaultWorkingDirectory):/host $(docker_image) \
         /bin/bash /host/scripts/docker_wheel_builder.sh $(python.version_tag)
-    displayName: 'Wheel build manylinux2010'
+    displayName: 'Wheel build manylinux2014'
   - template: templates/common_store_wheel.yml
   - template: templates/common_test_wheel.yml
 
@@ -44,9 +44,9 @@ jobs:
     vmImage: 'windows-2019'
   strategy:
     matrix:
-      Python310:
-        python.version: '3.10'
-        python.version_tag: 'py310'
+      Python312:
+        python.version: '3.12'
+        python.version_tag: 'py312'
   variables:
     platform.name: 'windows'
   steps:
@@ -61,12 +61,12 @@ jobs:
 - job: build_macos
   displayName: "Build macOS wheel"
   pool:
-    vmImage: 'macOS-10.15'
+    vmImage: 'macOS-13'
   strategy:
     matrix:
-      Python310:
-        python.version: '3.10'
-        python.version_tag: 'py310'
+      Python312:
+        python.version: '3.12'
+        python.version_tag: 'py312'
   variables:
     platform.name: 'macos'
     platform.tag: 'macosx-10.14-x86_64'
