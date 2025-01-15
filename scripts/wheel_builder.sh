@@ -10,7 +10,7 @@ if [ -n "$1" ]
 then
     if [ "$1" = "all" ]
     then
-        TARGETS="py36 py37 py38 py39 py310 py311 py312"
+        TARGETS="py36 py37 py38 py39 py310 py311 py312 py313"
     else
         TARGETS="$1"
     fi

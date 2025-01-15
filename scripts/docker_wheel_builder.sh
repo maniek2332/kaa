@@ -33,6 +33,10 @@ then
             PY_VERSION="python3.12"
             PY_VERSION_ABI="cp312-cp312"
             ;;
+        "py313")
+            PY_VERSION="python3.13"
+            PY_VERSION_ABI="cp313-cp313"
+            ;;
         *)
             echo "ERROR: Unknown py version specified: $1"
             exit 1

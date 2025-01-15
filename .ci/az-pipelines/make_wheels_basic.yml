@@ -14,9 +14,9 @@ jobs:
     vmImage: 'ubuntu-20.04'
   strategy:
     matrix:
-      Python312:
-        python.version: '3.12'
-        python.version_tag: 'py312'
+      Python313:
+        python.version: '3.13'
+        python.version_tag: 'py313'
   variables:
     docker_image: "quay.io/pypa/manylinux2014_x86_64"
     platform.name: 'linux'
@@ -44,9 +44,9 @@ jobs:
     vmImage: 'windows-2019'
   strategy:
     matrix:
-      Python312:
-        python.version: '3.12'
-        python.version_tag: 'py312'
+      Python313:
+        python.version: '3.13'
+        python.version_tag: 'py313'
   variables:
     platform.name: 'windows'
   steps:
@@ -64,9 +64,9 @@ jobs:
     vmImage: 'macOS-13'
   strategy:
     matrix:
-      Python312:
-        python.version: '3.12'
-        python.version_tag: 'py312'
+      Python313:
+        python.version: '3.13'
+        python.version_tag: 'py313'
   variables:
     platform.name: 'macos'
     platform.tag: 'macosx-10.14-x86_64'
