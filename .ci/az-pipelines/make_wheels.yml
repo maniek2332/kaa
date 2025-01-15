@@ -26,12 +26,6 @@ jobs:
     vmImage: 'ubuntu-20.04'
   strategy:
     matrix:
-      Python36:
-        python.version: '3.6'
-        python.version_tag: 'py36'
-      Python37:
-        python.version: '3.7'
-        python.version_tag: 'py37'
       Python38:
         python.version: '3.8'
         python.version_tag: 'py38'
@@ -47,6 +41,9 @@ jobs:
       Python312:
         python.version: '3.12'
         python.version_tag: 'py312'
+      Python313:
+        python.version: '3.13'
+        python.version_tag: 'py313'
   variables:
     docker_image: "quay.io/pypa/manylinux2014_x86_64"
     platform.name: 'linux'
@@ -74,12 +71,6 @@ jobs:
     vmImage: 'windows-2019'
   strategy:
     matrix:
-      Python36:
-        python.version: '3.6'
-        python.version_tag: 'py36'
-      Python37:
-        python.version: '3.7'
-        python.version_tag: 'py37'
       Python38:
         python.version: '3.8'
         python.version_tag: 'py38'
@@ -95,6 +86,9 @@ jobs:
       Python312:
         python.version: '3.12'
         python.version_tag: 'py312'
+      Python313:
+        python.version: '3.13'
+        python.version_tag: 'py313'
   variables:
     platform.name: 'windows'
   steps:
@@ -109,15 +103,9 @@ jobs:
 - job: build_macos
   displayName: "Build macOS wheel"
   pool:
-    vmImage: 'macOS-11'
+    vmImage: 'macOS-13'
   strategy:
     matrix:
-      Python36:
-        python.version: '3.6'
-        python.version_tag: 'py36'
-      Python37:
-        python.version: '3.7'
-        python.version_tag: 'py37'
       Python38:
         python.version: '3.8'
         python.version_tag: 'py38'
@@ -133,6 +121,9 @@ jobs:
       Python312:
         python.version: '3.12'
         python.version_tag: 'py312'
+      Python313:
+        python.version: '3.13'
+        python.version_tag: 'py313'
   variables:
     platform.name: 'macos'
     platform.tag: 'macosx-10.14-x86_64'
@@ -172,8 +163,8 @@ jobs:
     # downloads go to: $(Pipeline.Workspace)/{artifact_name}
   - task: UsePythonVersion@0
     inputs:
-      versionSpec: '3.7'
-    displayName: 'Use Python 3.7'
+      versionSpec: '3.13'
+    displayName: 'Use Python 3.13'
   - script: |
       python -m pip install --upgrade pip
       python -m pip install twine

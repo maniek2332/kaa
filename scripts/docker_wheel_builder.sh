@@ -33,14 +33,18 @@ then
             PY_VERSION="python3.12"
             PY_VERSION_ABI="cp312-cp312"
             ;;
+        "py313")
+            PY_VERSION="python3.13"
+            PY_VERSION_ABI="cp313-cp313"
+            ;;
         *)
             echo "ERROR: Unknown py version specified: $1"
             exit 1
             ;;
     esac
 else
-    PY_VERSION="python3.7m"
-    PY_VERSION_ABI="cp37-cp37m"
+    echo "ERROR: No python version specified!"
+    exit 1
 fi
 
 echo "Building for: ${PY_VERSION} (${PY_VERSION_ABI})"
