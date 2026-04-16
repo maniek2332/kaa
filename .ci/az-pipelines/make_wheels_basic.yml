@@ -90,7 +90,7 @@ jobs:
   - template: templates/common_test_wheel.yml
 
 - job: build_macos_arm
-  displayName: "Build macOS (ARM) wheel"
+  displayName: "Build macOS (universal) wheel"
   pool:
     vmImage: 'macOS-15'
   strategy:
@@ -100,7 +100,7 @@ jobs:
         python.version_tag: 'py313'
   variables:
     platform.name: 'macos'
-    platform.tag: 'macosx-10.15-arm64'
+    platform.tag: 'macosx-10.15-universal2'
   steps:
   - template: templates/common_checkout_repository.yml
   - template: templates/common_prepare_python.yml
