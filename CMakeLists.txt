@@ -36,6 +36,9 @@ endif()
 add_subdirectory(src/kaa)
 
 install(TARGETS shaderc RUNTIME DESTINATION src/kaa/shaderc)
+if(WIN32)
+    install(FILES ${BGFX_DIR}/tools/bin/windows/dxcompiler.dll DESTINATION src/kaa/shaderc)
+endif()
 install(FILES
     kaacore/shaders/include/kaa.sh
     kaacore/third_party/bgfx/bgfx/src/bgfx_shader.sh

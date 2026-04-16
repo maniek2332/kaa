@@ -44,10 +44,10 @@ def test_auto_compilation(
         assert len(list(shader_bin_directory.glob('fs-glsl-*.bin'))) == 1
         assert len(list(shader_bin_directory.glob('fs-spirv-*.bin'))) == 1
     else:
-        assert len(list(shader_bin_directory.glob('vs-hlsl_dx9-*.bin'))) == 1
-        assert len(list(shader_bin_directory.glob('fs-hlsl_dx9-*.bin'))) == 1
-        assert len(list(shader_bin_directory.glob('vs-hlsl_dx11-*.bin'))) == 1
-        assert len(list(shader_bin_directory.glob('fs-hlsl_dx11-*.bin'))) == 1
+        assert len(list(shader_bin_directory.glob('vs-hlsl_dxbc-*.bin'))) == 1
+        assert len(list(shader_bin_directory.glob('fs-hlsl_dxbc-*.bin'))) == 1
+        assert len(list(shader_bin_directory.glob('vs-hlsl_dxil-*.bin'))) == 1
+        assert len(list(shader_bin_directory.glob('fs-hlsl_dxil-*.bin'))) == 1
         assert len(list(shader_bin_directory.glob('vs-glsl-*.bin'))) == 1
         assert len(list(shader_bin_directory.glob('vs-spirv-*.bin'))) == 1
         assert len(list(shader_bin_directory.glob('fs-glsl-*.bin'))) == 1

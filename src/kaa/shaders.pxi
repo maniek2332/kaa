@@ -93,10 +93,10 @@ cdef class FragmentShader(_ShaderBase):
 
 
 cdef CShaderModel _translate_shader_model(str model_name):
-    if model_name == 'hlsl_dx9':
-        return CShaderModel.hlsl_dx9
-    elif model_name == 'hlsl_dx11':
-        return CShaderModel.hlsl_dx11
+    if model_name == 'hlsl_dxbc':
+        return CShaderModel.hlsl_dxbc
+    elif model_name == 'hlsl_dxil':
+        return CShaderModel.hlsl_dxil
     elif model_name == 'glsl':
         return CShaderModel.glsl
     elif model_name == 'spirv':

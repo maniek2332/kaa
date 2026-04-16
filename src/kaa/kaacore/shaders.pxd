@@ -12,8 +12,8 @@ cdef extern from "kaacore/shaders.h" namespace "kaacore" nogil:
         fragment "kaacore::ShaderType::fragment"
 
     cdef enum CShaderModel "kaacore::ShaderModel":
-        hlsl_dx9 "kaacore::ShaderModel::hlsl_dx9"
-        hlsl_dx11 "kaacore::ShaderModel::hlsl_dx11"
+        hlsl_dxbc "kaacore::ShaderModel::hlsl_dxbc"
+        hlsl_dxil "kaacore::ShaderModel::hlsl_dxil"
         glsl "kaacore::ShaderModel::glsl"
         spirv "kaacore::ShaderModel::spirv"
         metal "kaacore::ShaderModel::metal"

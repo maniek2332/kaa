@@ -20,6 +20,7 @@ jobs:
   variables:
     docker_image: "quay.io/pypa/manylinux_2_28_x86_64"
     platform.name: 'linux'
+    platform.tag: 'manylinux_2_28_x86_64'
   steps:
   - template: templates/common_checkout_repository.yml
   - template: templates/common_prepare_python.yml
@@ -50,6 +51,7 @@ jobs:
         python.version_tag: 'py313'
   variables:
     platform.name: 'windows'
+    platform.tag: 'win_amd64'
   steps:
   - template: templates/common_checkout_repository.yml
   - template: templates/common_prepare_python.yml

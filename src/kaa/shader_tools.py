@@ -43,11 +43,17 @@ COMPILATION_FLAGS = {
     ('metal', 'fragment'): {
         'target_platform': 'osx', 'profile': 'metal'
     },
-    ('hlsl_dx11', 'vertex'): {
-        'target_platform': 'windows', 'profile': 'vs_5_0'
+    ('hlsl_dxbc', 'vertex'): {
+        'target_platform': 'windows', 'profile': 's_5_0'
     },
-    ('hlsl_dx11', 'fragment'): {
-        'target_platform': 'windows', 'profile': 'ps_5_0'
+    ('hlsl_dxbc', 'fragment'): {
+        'target_platform': 'windows', 'profile': 's_5_0'
+    },
+    ('hlsl_dxil', 'vertex'): {
+        'target_platform': 'windows', 'profile': 's_6_0'
+    },
+    ('hlsl_dxil', 'fragment'): {
+        'target_platform': 'windows', 'profile': 's_6_0'
     }
 }
 
@@ -368,4 +374,4 @@ def _choose_models_for_platform(platform_name):
     elif platform_name == 'osx':
         return ('metal', 'glsl', 'spirv')
     elif platform_name == 'windows':
-        return ('hlsl_dx9', 'hlsl_dx11', 'glsl', 'spirv')
+        return ('hlsl_dxbc', 'hlsl_dxil', 'glsl', 'spirv')
