@@ -43,12 +43,6 @@ COMPILATION_FLAGS = {
     ('metal', 'fragment'): {
         'target_platform': 'osx', 'profile': 'metal'
     },
-    ('hlsl_dx9', 'vertex'): {
-        'target_platform': 'windows', 'profile': 'vs_3_0'
-    },
-    ('hlsl_dx9', 'fragment'): {
-        'target_platform': 'windows', 'profile': 'ps_3_0'
-    },
     ('hlsl_dx11', 'vertex'): {
         'target_platform': 'windows', 'profile': 'vs_5_0'
     },
