@@ -1,0 +1,16 @@
+diff --git a/include/bx/platform.h b/include/bx/platform.h
+index 72a3622..5d8209a 100644
+--- a/include/bx/platform.h
++++ b/include/bx/platform.h
+@@ -470,9 +470,9 @@ static_assert(!BX_COMPILER_GCC || BX_COMPILER_GCC >= 110000, "\n\n"
+ 	"\t\n");
+ 
+ // https://www.sourceware.org/glibc/wiki/Glibc%20Timeline
+-static_assert(!BX_CRT_GLIBC || BX_CRT_GLIBC >= 23100, "\n\n"
++static_assert(!BX_CRT_GLIBC || BX_CRT_GLIBC >= 22800, "\n\n"
+ 	"\t** IMPORTANT! **\n\n"
+-	"\tMinimum supported GLIBC version is 2.31.0 (February 1, 2020).\n"
++	"\tMinimum supported GLIBC version is 2.28.0.\n"
+ 	"\t\n");
+ 
+ // https://learn.microsoft.com/en-us/cpp/overview/compiler-versions

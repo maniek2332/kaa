@@ -53,7 +53,8 @@ PATH="/opt/python/${PY_VERSION_ABI}/bin:$PATH"
 python --version
 
 yum install -y alsa-lib-devel pulseaudio-libs-devel  # SDL audio dependencies
-yum install -y libXrandr-devel libXcursor-devel  # SDL video dependencies
+yum install -y libXrandr-devel libXcursor-devel  # SDL video (X11) dependencies
+yum install -y mesa-libEGL-devel mesa-libGL-devel wayland-devel wayland-protocols-devel  # SDL video (Wayland) dependencies
 pip install cmake -r /host/requirements/build.txt
 
 # simulate out-of-source build
@@ -71,5 +72,5 @@ LD_LIBRARY_PATH=/usr/local/lib/:$(echo /_skbuild/linux-*/cmake-build/kaacore/thi
 for WHEEL in /wheels/*.whl
 do
     auditwheel repair -w /host/wheelhouse/ --lib-sdir ./ \
-        --plat manylinux2014_x86_64 "${WHEEL}"
+        --plat manylinux_2_28_x86_64 "${WHEEL}"
 done
