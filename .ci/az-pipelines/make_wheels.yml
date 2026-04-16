@@ -23,24 +23,25 @@ jobs:
 - job: build_linux
   displayName: "Build Linux wheel"
   pool:
-    vmImage: 'ubuntu-20.04'
+    vmImage: 'ubuntu-24.04'
   strategy:
     matrix:
-      Python36:
-        python.version: '3.6'
-        python.version_tag: 'py36'
-      Python37:
-        python.version: '3.7'
-        python.version_tag: 'py37'
-      Python38:
-        python.version: '3.8'
-        python.version_tag: 'py38'
-      Python39:
-        python.version: '3.9'
-        python.version_tag: 'py39'
-      Python310:
-        python.version: '3.10'
-        python.version_tag: 'py310'
+      # Disabled for, to make pipeline faster
+      # Python36:
+      #   python.version: '3.6'
+      #   python.version_tag: 'py36'
+      # Python37:
+      #   python.version: '3.7'
+      #   python.version_tag: 'py37'
+      # Python38:
+      #   python.version: '3.8'
+      #   python.version_tag: 'py38'
+      # Python39:
+      #   python.version: '3.9'
+      #   python.version_tag: 'py39'
+      # Python310:
+      #   python.version: '3.10'
+      #   python.version_tag: 'py310'
       Python311:
         python.version: '3.11'
         python.version_tag: 'py311'
@@ -71,24 +72,25 @@ jobs:
 - job: build_windows
   displayName: "Build Windows wheel"
   pool:
-    vmImage: 'windows-2019'
+    vmImage: 'windows-2025'
   strategy:
     matrix:
-      Python36:
-        python.version: '3.6'
-        python.version_tag: 'py36'
-      Python37:
-        python.version: '3.7'
-        python.version_tag: 'py37'
-      Python38:
-        python.version: '3.8'
-        python.version_tag: 'py38'
-      Python39:
-        python.version: '3.9'
-        python.version_tag: 'py39'
-      Python310:
-        python.version: '3.10'
-        python.version_tag: 'py310'
+      # Disabled for, to make pipeline faster
+      # Python36:
+      #   python.version: '3.6'
+      #   python.version_tag: 'py36'
+      # Python37:
+      #   python.version: '3.7'
+      #   python.version_tag: 'py37'
+      # Python38:
+      #   python.version: '3.8'
+      #   python.version_tag: 'py38'
+      # Python39:
+      #   python.version: '3.9'
+      #   python.version_tag: 'py39'
+      # Python310:
+      #   python.version: '3.10'
+      #   python.version_tag: 'py310'
       Python311:
         python.version: '3.11'
         python.version_tag: 'py311'
@@ -109,24 +111,25 @@ jobs:
 - job: build_macos
   displayName: "Build macOS wheel"
   pool:
-    vmImage: 'macOS-11'
+    vmImage: 'macOS-15'
   strategy:
     matrix:
-      Python36:
-        python.version: '3.6'
-        python.version_tag: 'py36'
-      Python37:
-        python.version: '3.7'
-        python.version_tag: 'py37'
-      Python38:
-        python.version: '3.8'
-        python.version_tag: 'py38'
-      Python39:
-        python.version: '3.9'
-        python.version_tag: 'py39'
-      Python310:
-        python.version: '3.10'
-        python.version_tag: 'py310'
+      # Disabled for, to make pipeline faster
+      # Python36:
+      #   python.version: '3.6'
+      #   python.version_tag: 'py36'
+      # Python37:
+      #   python.version: '3.7'
+      #   python.version_tag: 'py37'
+      # Python38:
+      #   python.version: '3.8'
+      #   python.version_tag: 'py38'
+      # Python39:
+      #   python.version: '3.9'
+      #   python.version_tag: 'py39'
+      # Python310:
+      #   python.version: '3.10'
+      #   python.version_tag: 'py310'
       Python311:
         python.version: '3.11'
         python.version_tag: 'py311'
@@ -162,7 +165,7 @@ jobs:
   - build_windows
   - build_macos
   pool:
-    vmImage: 'ubuntu-20.04'
+    vmImage: 'ubuntu-24.04'
   variables:
   - group: pypi-credentials
   # selected variable group should provide: TWINE_USERNAME, TWINE_PASSWORD, TWINE_REPOSITORY_URL
@@ -172,8 +175,8 @@ jobs:
     # downloads go to: $(Pipeline.Workspace)/{artifact_name}
   - task: UsePythonVersion@0
     inputs:
-      versionSpec: '3.7'
-    displayName: 'Use Python 3.7'
+      versionSpec: '3.12'
+    displayName: 'Use Python 3.12'
   - script: |
       python -m pip install --upgrade pip
       python -m pip install twine
