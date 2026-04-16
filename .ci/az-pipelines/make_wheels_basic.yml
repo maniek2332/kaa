@@ -18,7 +18,7 @@ jobs:
         python.version: '3.13'
         python.version_tag: 'py313'
   variables:
-    docker_image: "quay.io/pypa/manylinux2014_x86_64"
+    docker_image: "quay.io/pypa/manylinux_2_28_x86_64"
     platform.name: 'linux'
   steps:
   - template: templates/common_checkout_repository.yml
@@ -32,9 +32,10 @@ jobs:
       touch _build_version.py
       python -c 'import versioneer; versioneer.write_to_version_file("_build_version.py", versioneer.get_versions())'
       sudo docker pull $(docker_image)
+      (cd kaacore/third_party/bgfx/bx && patch -p1) < scripts/bx_relax_glibc_requirement.patch
       sudo docker run -v $(System.DefaultWorkingDirectory):/host $(docker_image) \
         /bin/bash /host/scripts/docker_wheel_builder.sh $(python.version_tag)
-    displayName: 'Wheel build manylinux2014'
+    displayName: 'Wheel build manylinux_2_28'
   - template: templates/common_store_wheel.yml
   - template: templates/common_test_wheel.yml
 
