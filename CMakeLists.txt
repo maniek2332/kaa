@@ -31,11 +31,13 @@ if (
     OR CMAKE_CXX_COMPILER_ID MATCHES "GNU"
 )
     target_link_options(shaderc PRIVATE -s)
+    target_link_options(texturec PRIVATE -s)
 endif()
 
 add_subdirectory(src/kaa)
 
 install(TARGETS shaderc RUNTIME DESTINATION src/kaa/shaderc)
+install(TARGETS texturec RUNTIME DESTINATION src/kaa/texturec)
 if(WIN32)
     install(FILES ${BGFX_DIR}/tools/bin/windows/dxcompiler.dll DESTINATION src/kaa/shaderc)
 endif()

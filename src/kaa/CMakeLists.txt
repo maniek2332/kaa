@@ -100,6 +100,7 @@ target_include_directories(
 
 target_link_libraries(_kaa kaacore)
 add_dependencies(_kaa shaderc)
+add_dependencies(_kaa texturec)
 
 target_compile_definitions(_kaa PUBLIC GLM_ENABLE_EXPERIMENTAL)
 

@@ -27,7 +27,8 @@ setup(
     entry_points={
         'console_scripts': [
             'shaderc=kaa.cli:shaderc',
-            'compile_shader=kaa.cli:compile_shader'
+            'compile_shader=kaa.cli:compile_shader',
+            'texturec=kaa.cli:texturec',
         ]
     },
     install_requires=[

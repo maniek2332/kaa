@@ -9,6 +9,15 @@ from kaa.shader_tools import CliShaderCompiler, UnsupportedPlatform
 logger = logging.getLogger(__name__)
 
 
+def texturec():
+    import subprocess
+    binary = os.path.join(os.path.dirname(__file__), 'texturec', 'texturec')
+    if sys.platform == 'win32':
+        binary += '.exe'
+    result = subprocess.run([binary] + sys.argv[1:])
+    return result.returncode
+
+
 def shaderc():
     compiler = CliShaderCompiler(raise_on_compilation_error=False)
     return compiler.compile(*sys.argv[1:])
