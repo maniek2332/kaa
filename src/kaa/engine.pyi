@@ -53,6 +53,9 @@ class EngineInstance:
     def change_scene(self, scene: Scene) -> None:
         ...
 
+    def get_capabilities_summary(self) -> str:
+        ...
+
     def get_displays(self) -> List[Display]:
         ...
 

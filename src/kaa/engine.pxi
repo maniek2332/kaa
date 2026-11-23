@@ -109,6 +109,10 @@ cdef class _Engine:
             displays_list.append(Display.wrap_c_display(c_disp))
         return displays_list
 
+    def get_capabilities_summary(self):
+        cdef string summary = get_c_engine().get_capabilities_summary()
+        return summary.decode('utf-8')
+
     def stop(self):
         if not is_c_engine_initialized():
             raise ValueError('Engine is already stopped.')
